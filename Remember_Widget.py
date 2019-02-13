@@ -1,8 +1,5 @@
 import appex
 import os
-import ui
-import shelve
-from datetime import date, timedelta
 import Remember
 
 
