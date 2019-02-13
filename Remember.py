@@ -16,7 +16,6 @@ class ReminderStorer (object):
 	def __init__(self, parent):
 		self.load()
 		self.parent = parent
-		
 		self.editing = None
 		
 	def tableview_number_of_sections(self, tableview):
@@ -126,11 +125,11 @@ class ReminderStorer (object):
 			self.events = file['events']
 			self.dates = file['dates']
 			
+			# Testing: adding events that repeat weekly
 			ADD_REPEATED_EVENTS = False
 			if not ADD_REPEATED_EVENTS: return
 			
-			#self.repeatedEvents = {0: ['Volleyball 8-10'], 2: ['Volleyball 7-9', 'Band'], 3: ['Piano Lesson'], 4: ['Band'], 6: ['Curling']}
-			self.repeatedEvents = {1: ['Robotics @ Lunch'], 6: ['Theory']}
+			self.repeatedEvents = {}
 			REPEAT = 20
 			for eventWeekday in self.repeatedEvents.keys():
 				for event in self.repeatedEvents[eventWeekday]:
@@ -151,15 +150,20 @@ class NameInputDelegate (object):
 	
 	def textfield_should_begin_editing(self, textfield):
 		return True
+	
 	def textfield_did_begin_editing(self, textfield):
 		pass
+	
 	def textfield_did_end_editing(self, textfield):
 		self.parent.nameInputted()
+		
 	def textfield_should_return(self, textfield):
 		textfield.end_editing()
 		return True
+	
 	def textfield_should_change(self, textfield, range, replacement):
 		return True
+	
 	def textfield_did_change(self, textfield):
 		pass
 	
